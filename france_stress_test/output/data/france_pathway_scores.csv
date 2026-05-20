@@ -1,0 +1,7 @@
+pathway,score,weight,weighted_score,source_type,basis,score_gap_to_threshold_70
+AMF Bond Issuance,75.0,0.2,15.0,DOCUMENTED_AUTHOR_SCORE,Structured institutional score used in the paper; reflects French capital-market supervision and uncertainty around blockchain governance-layer classification.,5.0
+ACPR AML/KYC,70.0,0.18,12.6,DOCUMENTED_AUTHOR_SCORE,Structured institutional score used in the paper; reflects AML/KYC supervisory capacity and uncertainty around ZKP compliance attestations.,0.0
+Banque de France / ECB Settlement,85.0,0.15,12.75,DOCUMENTED_AUTHOR_SCORE,Structured institutional score used in the paper; reflects strong euro settlement infrastructure but limited production use of DLT settlement for this structure.,15.0
+CMF + Civil Code,65.0,0.17,11.05,DOCUMENTED_AUTHOR_SCORE,Structured institutional score used in the paper; reflects uncertainty around smart-contract escrow enforceability and insolvency treatment.,-5.0
+AFT / LOLF Public Finance,80.0,0.15,12.0,DOCUMENTED_AUTHOR_SCORE,Structured institutional score used in the paper; reflects strong public-finance capacity but possible friction with programmable disbursement.,10.0
+CNIL / GDPR,55.0,0.15,8.25,DOCUMENTED_AUTHOR_SCORE,"Structured institutional score used in the paper; reflects GDPR, data immutability, and ZKP admissibility uncertainty.",-15.0
