@@ -7,8 +7,10 @@ import pandas as pd
 
 try:
     from .config import ARTEMIS_ANCHOR, FRANCE_PATHWAY_SCORES, FRANCE_STRESS_SCENARIOS, MODEL_PARAMETERS, SIMULATION, sigmoid
+    from .france_pathways import compute_scenario_pathway_integrities
 except ImportError:
     from config import ARTEMIS_ANCHOR, FRANCE_PATHWAY_SCORES, FRANCE_STRESS_SCENARIOS, MODEL_PARAMETERS, SIMULATION, sigmoid
+    from france_pathways import compute_scenario_pathway_integrities
 
 
 @dataclass(frozen=True)
@@ -38,6 +40,9 @@ def validate_stress_inputs() -> None:
         _require_source_fields(payload, f"model_parameter:{parameter_name}")
     for scenario_name, payload in FRANCE_STRESS_SCENARIOS.items():
         _require_source_fields(payload, f"scenario:{scenario_name}")
+    pathway_weight_total = sum(float(payload["weight"]) for payload in FRANCE_PATHWAY_SCORES.values())
+    if not np.isclose(pathway_weight_total, 1.0):
+        raise ValueError(f"France pathway weights must sum to 1.0, found {pathway_weight_total}.")
 
 
 def _status_from_metrics(issuance_probability: np.ndarray, admissibility: np.ndarray, time_months: np.ndarray) -> np.ndarray:
@@ -53,17 +58,21 @@ def run_france_stress_test() -> StressRunResult:
     validate_stress_inputs()
     iterations = int(SIMULATION["iterations"])
     random_seed = int(SIMULATION["random_seed"])
-    cnil_score = float(FRANCE_PATHWAY_SCORES["CNIL / GDPR"]["score"]) / 100.0
     params = {name: float(payload["value"]) for name, payload in MODEL_PARAMETERS.items()}
     anchor = {name: float(payload["value"]) for name, payload in ARTEMIS_ANCHOR.items()}
+    pathway_weights = {name: float(payload["weight"]) for name, payload in FRANCE_PATHWAY_SCORES.items()}
 
     frames: list[pd.DataFrame] = []
     for index, (scenario_key, scenario) in enumerate(FRANCE_STRESS_SCENARIOS.items()):
         rng = np.random.default_rng(random_seed + index)
-        france_integrity = float(scenario["france_integrity"])
+        pathway_integrities = compute_scenario_pathway_integrities(scenario_key)
+        france_integrity = float(sum(pathway_integrities[pathway] * pathway_weights[pathway] for pathway in pathway_integrities))
         artemis_integrity = float(scenario["artemis_integrity"])
-        institutional_quality = min(france_integrity, artemis_integrity)
+        weakest_pathway_integrity = float(min(pathway_integrities.values()))
+        institutional_quality = min(weakest_pathway_integrity, artemis_integrity)
         average_quality = 0.5 * (france_integrity + artemis_integrity)
+        data_integrity = pathway_integrities["CNIL / GDPR"]
+        legal_integrity = pathway_integrities["CMF + Civil Code"]
 
         risk_premium = (
             anchor["base_risk_premium_bps"]
@@ -83,36 +92,30 @@ def run_france_stress_test() -> StressRunResult:
 
         mobilization_ratio = (
             anchor["base_mobilization_ratio"]
-            + anchor["blockchain_mobilization_premium"] * institutional_quality
+            + anchor["blockchain_mobilization_premium"] * average_quality
             - (1.0 - institutional_quality) * params["mobilization_institutional_penalty_weight"]
             - (risk_premium - anchor["base_risk_premium_bps"]) / params["risk_premium_bps_scale"]
             + rng.normal(0.0, params["mobilization_noise_sd"], iterations)
         )
         mobilization_ratio = np.clip(mobilization_ratio, 0.0, None)
 
-        total_delay = (
-            float(scenario["regulatory_delay_months"])
-            + float(scenario["legal_delay_months"])
-            + float(scenario["validation_delay_months"])
-            + float(scenario["settlement_delay_months"])
-        )
-        legal_validation_factor = np.clip(
-            1.0 - total_delay / params["legal_validation_decay_months"],
-            params["legal_validation_floor"],
-            1.0,
-        )
         admissibility = (
-            artemis_integrity
-            * cnil_score
-            * (1.0 - float(scenario["oracle_challenge_severity"]))
-            * legal_validation_factor
+            0.45 * data_integrity
+            + 0.35 * legal_integrity
+            + 0.20 * artemis_integrity
+        ) * (1.0 - float(scenario["oracle_challenge_severity"]) * params["admissibility_oracle_penalty_weight"])
+        admissibility = (
+            admissibility
+            + rng.normal(0.0, params["admissibility_noise_sd"], iterations)
         )
         admissibility = np.clip(admissibility, 0.0, 1.0)
-        admissibility = np.full(iterations, admissibility)
 
-        issuance_probability = sigmoid((institutional_quality - 0.50) * params["issuance_sigmoid_scale"])
+        issuance_latent = (
+            ((0.65 * institutional_quality + 0.35 * average_quality) - 0.50) * params["issuance_sigmoid_scale"]
+            + rng.normal(0.0, params["issuance_noise_sd"], iterations)
+        )
+        issuance_probability = sigmoid(issuance_latent)
         issuance_probability = np.clip(issuance_probability, 0.0, 1.0)
-        issuance_probability = np.full(iterations, issuance_probability)
 
         pes_random_factor = np.clip(rng.normal(1.0, params["pes_random_sd"], iterations), 0.0, None)
         pes_achievement = (

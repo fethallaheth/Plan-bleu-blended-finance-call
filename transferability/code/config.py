@@ -165,6 +165,11 @@ TRANSFER_PARAMETERS = {
         "source_type": "MODEL_ASSUMPTION",
         "basis": "Risk premium increase for readiness gap versus France.",
     },
+    "constraint_risk_slope_bps": {
+        "value": 1.5,
+        "source_type": "MODEL_ASSUMPTION",
+        "basis": "Incremental risk premium per weakest-pillar point below the 60-point threshold.",
+    },
     "issuance_sigmoid_slope": {
         "value": 0.12,
         "source_type": "MODEL_ASSUMPTION",
@@ -185,6 +190,11 @@ TRANSFER_PARAMETERS = {
         "source_type": "MODEL_ASSUMPTION",
         "basis": "Country-level uncertainty for expected mobilization.",
     },
+    "constraint_mobilization_slope": {
+        "value": 0.008,
+        "source_type": "MODEL_ASSUMPTION",
+        "basis": "Mobilization penalty per weakest-pillar point below the 60-point threshold.",
+    },
     "risk_noise_sd": {
         "value": 8.0,
         "source_type": "MODEL_ASSUMPTION",
@@ -199,4 +209,3 @@ FIGURES_DIR = OUTPUT_DIR / "figures"
 TABLES_DIR = OUTPUT_DIR / "tables"
 AUDIT_DIR = OUTPUT_DIR / "audit"
 REPORT_DIR = OUTPUT_DIR / "report"
-

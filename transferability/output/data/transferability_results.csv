@@ -1,10 +1,10 @@
-country,readiness_score,readiness_gap_vs_france,expected_mobilization_ratio,expected_risk_premium_bps,issuance_probability,adaptation_time_months,main_binding_constraint,lowest_pillar_score,transferability_grade,adaptation_track,source_type
-France,78.0,0.0,4.2990061480253905,299.9950183093134,0.9664307767185175,9.0,legal_enforceability,65.0,Near-term transferable,near-term,DERIVED_DATA
-Spain,71.45,6.549999999999997,4.22247033950762,322.98446778022435,0.9291694027586801,14.239999999999998,legal_enforceability,65.0,Near-term transferable,near-term,DERIVED_DATA
-Italy,69.0,9.0,4.191563271396756,331.89550450410246,0.907207046882843,16.2,legal_enforceability,62.0,Transferable with adaptation,near-term,DERIVED_DATA
-Greece,59.35,18.65,4.0764249522932126,365.129145313081,0.7543595074357308,23.92,public_finance_compatibility,55.0,Transferable with adaptation,near-term,DERIVED_DATA
-Turkey,55.05,22.950000000000003,4.024597655753639,380.41781015230526,0.6470278089459084,33.36,legal_enforceability,48.0,Transferable with adaptation,medium-term,DERIVED_DATA
-Egypt,47.3,30.700000000000003,3.931079086950062,407.459749659704,0.4197012277108515,39.56,legal_enforceability,42.0,Capacity-building before transfer,medium-term,DERIVED_DATA
-Tunisia,40.65,37.35,3.851407592817067,430.46286134767104,0.24564049256426926,50.88,public_finance_compatibility,35.0,Capacity-building before transfer,long-term,DERIVED_DATA
-Algeria,34.1,43.9,3.772360720335092,453.5457332264053,0.1292057085071662,56.12,sustainable_finance_market_maturity,25.0,Foundation-building first,long-term,DERIVED_DATA
-Lebanon,28.25,49.75,3.7030973309051873,474.08484335812653,0.0684976037243261,72.80000000000001,public_finance_compatibility,20.0,Foundation-building first,indirect/very long-term,DERIVED_DATA
+country,readiness_score,readiness_gap_vs_france,constraint_adjusted_score,weakest_link_gap,expected_mobilization_ratio,expected_risk_premium_bps,issuance_probability,adaptation_time_months,main_binding_constraint,lowest_pillar_score,transferability_grade,adaptation_track,source_type
+France,78.0,0.0,78.0,0.0,4.2990061480253905,299.9950183093134,0.9664307767185175,9.0,legal_enforceability,65.0,Near-term transferable,near-term,DERIVED_DATA
+Spain,71.45,6.549999999999997,71.45,0.0,4.22247033950762,322.98446778022435,0.9291694027586801,14.239999999999998,legal_enforceability,65.0,Near-term transferable,near-term,DERIVED_DATA
+Italy,69.0,9.0,69.0,0.0,4.191563271396756,331.89550450410246,0.907207046882843,16.2,legal_enforceability,62.0,Transferable with adaptation,near-term,DERIVED_DATA
+Greece,59.35,18.65,58.1,5.0,4.0364249522932125,372.629145313081,0.7255179606769018,23.92,public_finance_compatibility,55.0,Transferable with adaptation,near-term,DERIVED_DATA
+Turkey,55.05,22.950000000000003,52.05,12.0,3.9285976557536384,398.41781015230526,0.5611917209472043,33.36,legal_enforceability,48.0,Capacity-building before transfer,medium-term,DERIVED_DATA
+Egypt,47.3,30.700000000000003,42.8,18.0,3.7870790869500612,434.459749659704,0.2965043090481888,39.56,legal_enforceability,42.0,Capacity-building before transfer,medium-term,DERIVED_DATA
+Tunisia,40.65,37.35,34.4,25.0,3.651407592817067,467.9628613476709,0.13331047543337043,50.88,public_finance_compatibility,35.0,Foundation-building first,long-term,DERIVED_DATA
+Algeria,34.1,43.9,25.35,35.0,3.4923607203350926,506.0457332264053,0.04935976830987477,56.12,sustainable_finance_market_maturity,25.0,Foundation-building first,long-term,DERIVED_DATA
+Lebanon,28.25,49.75,18.25,40.0,3.383097330905187,534.0848433581267,0.02166826631696053,72.80000000000001,public_finance_compatibility,20.0,Indirect / very long-term transfer,indirect/very long-term,DERIVED_DATA

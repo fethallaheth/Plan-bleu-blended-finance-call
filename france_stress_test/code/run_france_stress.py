@@ -80,6 +80,16 @@ def _write_model_summary(summary_df: pd.DataFrame, readiness_score: float, repor
     report_path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def _validate_target_status_alignment(summary_df: pd.DataFrame) -> None:
+    mismatches = summary_df.loc[summary_df["status"] != summary_df["target_status"], ["scenario_label", "status", "target_status"]]
+    if not mismatches.empty:
+        mismatch_text = ", ".join(
+            f"{row['scenario_label']}: actual={row['status']} expected={row['target_status']}"
+            for _, row in mismatches.iterrows()
+        )
+        raise ValueError(f"Scenario target-status mismatch detected. {mismatch_text}")
+
+
 def run() -> None:
     _ensure_directories()
     pathway_df = build_pathway_dataframe()
@@ -90,6 +100,7 @@ def run() -> None:
     pathway_integrity_df = build_pathway_integrity_heatmap()
     anchor_df = anchor_table()
     _validate_source_classification(pathway_df, stress_result.summary, stress_result.iterations)
+    _validate_target_status_alignment(stress_result.summary)
 
     pathway_df.to_csv(DATA_DIR / "france_pathway_scores.csv", index=False)
     stress_result.summary.to_csv(DATA_DIR / "france_stress_results.csv", index=False)

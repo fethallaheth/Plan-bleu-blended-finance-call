@@ -27,6 +27,10 @@ def _constraint_penalty(lowest_pillar_value: float) -> float:
     return 0.0
 
 
+def _constraint_gap(lowest_pillar_value: float) -> float:
+    return max(60.0 - lowest_pillar_value, 0.0)
+
+
 def _transferability_grade(score: float) -> str:
     if score >= 70:
         return "Near-term transferable"
@@ -61,9 +65,15 @@ def run_transferability_model(readiness_df: pd.DataFrame) -> TransferResult:
         country_score = float(country_row["readiness_score"])
         readiness_gap = france_score - country_score
 
+        lowest_pillar = str(country_row["main_binding_constraint"])
+        lowest_pillar_value = float(country_row[lowest_pillar])
+        weakest_link_gap = _constraint_gap(lowest_pillar_value)
+        constraint_adjusted_score = country_score - 0.25 * weakest_link_gap
+
         mobilization_draws = (
             params["expected_mobilization_base"]
             - readiness_gap * params["mobilization_gap_slope"]
+            - weakest_link_gap * params["constraint_mobilization_slope"]
             + rng.normal(0.0, params["mobilization_noise_sd"], draws)
         )
         mobilization_draws = np.clip(mobilization_draws, 0.0, None)
@@ -72,14 +82,15 @@ def run_transferability_model(readiness_df: pd.DataFrame) -> TransferResult:
         risk_draws = (
             params["risk_premium_base_bps"]
             + readiness_gap * params["risk_gap_slope_bps"]
+            + weakest_link_gap * params["constraint_risk_slope_bps"]
             + rng.normal(0.0, params["risk_noise_sd"], draws)
         )
         risk_draws = np.clip(risk_draws, 0.0, None)
         expected_risk_premium = float(np.mean(risk_draws))
 
-        issuance_probability = float(1.0 / (1.0 + np.exp(-((country_score - 50.0) * params["issuance_sigmoid_slope"]))))
-        lowest_pillar = str(country_row["main_binding_constraint"])
-        lowest_pillar_value = float(country_row[lowest_pillar])
+        issuance_probability = float(
+            1.0 / (1.0 + np.exp(-((constraint_adjusted_score - 50.0) * params["issuance_sigmoid_slope"])))
+        )
         penalty = _constraint_penalty(lowest_pillar_value)
         adaptation_time = (
             params["adaptation_months_base"]
@@ -91,13 +102,15 @@ def run_transferability_model(readiness_df: pd.DataFrame) -> TransferResult:
                 "country": country,
                 "readiness_score": country_score,
                 "readiness_gap_vs_france": readiness_gap,
+                "constraint_adjusted_score": constraint_adjusted_score,
+                "weakest_link_gap": weakest_link_gap,
                 "expected_mobilization_ratio": expected_mobilization,
                 "expected_risk_premium_bps": expected_risk_premium,
                 "issuance_probability": issuance_probability,
                 "adaptation_time_months": adaptation_time,
                 "main_binding_constraint": lowest_pillar,
                 "lowest_pillar_score": lowest_pillar_value,
-                "transferability_grade": _transferability_grade(country_score),
+                "transferability_grade": _transferability_grade(constraint_adjusted_score),
                 "adaptation_track": _adaptation_track(adaptation_time),
                 "source_type": "DERIVED_DATA",
             }

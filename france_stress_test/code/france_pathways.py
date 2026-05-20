@@ -48,28 +48,39 @@ def compute_france_readiness(pathway_df: pd.DataFrame) -> ReadinessResult:
     return ReadinessResult(score=score, classification=classify_readiness(score))
 
 
-def build_pathway_integrity_heatmap() -> pd.DataFrame:
+def compute_scenario_pathway_integrities(scenario_key: str) -> dict[str, float]:
+    scenario = FRANCE_STRESS_SCENARIOS[scenario_key]
     base_scores = {name: float(payload["score"]) / 100.0 for name, payload in FRANCE_PATHWAY_SCORES.items()}
-    rows: list[dict[str, float | str]] = []
+    integrities: dict[str, float] = {}
+    delay_total = (
+        float(scenario["regulatory_delay_months"])
+        + float(scenario["legal_delay_months"])
+        + float(scenario["validation_delay_months"])
+        + float(scenario["settlement_delay_months"])
+    )
+    delay_scaled = min(delay_total / 60.0, 1.0)
+
     for pathway, sensitivities in PATHWAY_STRESS_SENSITIVITY.items():
+        stress_penalty = (
+            float(sensitivities["regulatory"]) * float(scenario["regulatory_delay_months"]) / 24.0
+            + float(sensitivities["legal"]) * float(scenario["legal_delay_months"]) / 24.0
+            + float(sensitivities["validation"]) * float(scenario["validation_delay_months"]) / 24.0
+            + float(sensitivities["settlement"]) * float(scenario["settlement_delay_months"]) / 36.0
+            + float(sensitivities["oracle"]) * float(scenario["oracle_challenge_severity"])
+            + 0.15 * delay_scaled
+        )
+        integrities[pathway] = float(np.clip(base_scores[pathway] * (1.0 - stress_penalty), 0.0, 1.0))
+    return integrities
+
+
+def build_pathway_integrity_heatmap() -> pd.DataFrame:
+    rows: list[dict[str, float | str]] = []
+    scenario_integrities = {
+        scenario_key: compute_scenario_pathway_integrities(scenario_key) for scenario_key in FRANCE_STRESS_SCENARIOS
+    }
+    for pathway in PATHWAY_STRESS_SENSITIVITY:
         row = {"pathway": pathway}
-        for scenario_key, scenario in FRANCE_STRESS_SCENARIOS.items():
-            delay_total = (
-                float(scenario["regulatory_delay_months"])
-                + float(scenario["legal_delay_months"])
-                + float(scenario["validation_delay_months"])
-                + float(scenario["settlement_delay_months"])
-            )
-            delay_scaled = min(delay_total / 60.0, 1.0)
-            stress_penalty = (
-                float(sensitivities["regulatory"]) * float(scenario["regulatory_delay_months"]) / 24.0
-                + float(sensitivities["legal"]) * float(scenario["legal_delay_months"]) / 24.0
-                + float(sensitivities["validation"]) * float(scenario["validation_delay_months"]) / 24.0
-                + float(sensitivities["settlement"]) * float(scenario["settlement_delay_months"]) / 36.0
-                + float(sensitivities["oracle"]) * float(scenario["oracle_challenge_severity"])
-                + 0.15 * delay_scaled
-            )
-            integrity = float(np.clip(base_scores[pathway] * (1.0 - stress_penalty), 0.0, 1.0))
-            row[scenario_key] = integrity * 100.0
+        for scenario_key, integrities in scenario_integrities.items():
+            row[scenario_key] = integrities[pathway] * 100.0
         rows.append(row)
     return pd.DataFrame(rows)

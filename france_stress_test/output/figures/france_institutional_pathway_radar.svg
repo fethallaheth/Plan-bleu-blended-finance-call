@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-05-20T03:06:04.328179</dc:date>
+    <dc:date>2026-05-20T13:18:35.074507</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -72,7 +72,7 @@ z
      <g id="line2d_1">
       <path d="M 279.641953 255.8315 
 L 501.401953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_1">
       <!-- AMF Bond Issuance -->
@@ -417,7 +417,7 @@ z
      <g id="line2d_2">
       <path d="M 279.641953 255.8315 
 L 390.521953 63.781706 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_2">
       <!-- ACPR AML/KYC -->
@@ -569,7 +569,7 @@ z
      <g id="line2d_3">
       <path d="M 279.641953 255.8315 
 L 168.761953 63.781706 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_3">
       <!-- Banque de France / ECB Settlement -->
@@ -772,7 +772,7 @@ z
      <g id="line2d_4">
       <path d="M 279.641953 255.8315 
 L 57.881953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_4">
       <!-- CMF + Civil Code -->
@@ -842,7 +842,7 @@ z
      <g id="line2d_5">
       <path d="M 279.641953 255.8315 
 L 168.761953 447.881294 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_5">
       <!-- AFT / LOLF Public Finance -->
@@ -943,7 +943,7 @@ z
      <g id="line2d_6">
       <path d="M 279.641953 255.8315 
 L 390.521953 447.881294 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_6">
       <!-- CNIL / GDPR -->
@@ -1057,7 +1057,7 @@ C 285.466204 300.1835 291.233822 299.036249 296.614729 296.807405
 C 301.995635 294.578561 306.885186 291.311468 311.003553 287.1931 
 C 315.121921 283.074732 318.389014 278.185182 320.617858 272.804276 
 C 322.846703 267.423369 323.993953 261.655751 323.993953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_7">
       <!-- 20 -->
@@ -1138,7 +1138,7 @@ C 291.290456 344.5355 302.825691 342.240999 313.587504 337.78331
 C 324.349317 333.325621 334.128418 326.791435 342.365153 318.5547 
 C 350.601888 310.317965 357.136074 300.538864 361.593763 289.777051 
 C 366.051452 279.015238 368.345953 267.480003 368.345953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_8">
       <!-- 40 -->
@@ -1188,7 +1188,7 @@ C 297.114707 388.8875 314.41756 385.445748 330.56028 378.759215
 C 346.703 372.072682 361.37165 362.271403 373.726753 349.9163 
 C 386.081856 337.561197 395.883135 322.892546 402.569668 306.749827 
 C 409.256202 290.607107 412.697953 273.304254 412.697953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_9">
       <!-- 60 -->
@@ -1252,7 +1252,7 @@ C 302.938958 433.2395 326.009429 428.650498 347.533055 419.73512
 C 369.056682 410.819742 388.614883 397.75137 405.088353 381.2779 
 C 421.561823 364.80443 434.630195 345.246229 443.545573 323.722602 
 C 452.460951 302.198976 457.049953 279.128505 457.049953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_10">
       <!-- 80 -->
@@ -1323,7 +1323,7 @@ C 308.76321 477.5915 337.601298 471.855247 364.505831 460.711025
 C 391.410364 449.566803 415.858115 433.231338 436.449953 412.6395 
 C 457.041791 392.047662 473.377256 367.599911 484.521478 340.695378 
 C 495.665701 313.790845 501.401953 284.952756 501.401953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #cccccc; stroke-width: 0.8; stroke-linecap: round"/>
      </g>
      <g id="text_11">
       <!-- 100 -->
@@ -1357,7 +1357,7 @@ L 135.497953 255.8315
 L 190.937953 409.471335 
 L 340.625953 361.458886 
 z
-" clip-path="url(#p5c605c97f9)" style="fill: #1f3b73; opacity: 0.25; stroke: #1f3b73; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#pfd99a689c4)" style="fill: #1f3b73; opacity: 0.25; stroke: #1f3b73; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_12">
     <path d="M 445.961953 255.8315 
@@ -1367,7 +1367,7 @@ L 135.497953 255.8315
 L 190.937953 409.471335 
 L 340.625953 361.458886 
 L 445.961953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke: #1f3b73; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke: #1f3b73; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="line2d_13">
     <path d="M 434.873953 255.8315 
@@ -1377,7 +1377,7 @@ L 124.409953 255.8315
 L 202.025953 390.266355 
 L 357.257953 390.266355 
 L 434.873953 255.8315 
-" clip-path="url(#p5c605c97f9)" style="fill: none; stroke-dasharray: 4.44,1.92; stroke-dashoffset: 0; stroke: #dc143c; stroke-width: 1.2"/>
+" clip-path="url(#pfd99a689c4)" style="fill: none; stroke-dasharray: 4.44,1.92; stroke-dashoffset: 0; stroke: #dc143c; stroke-width: 1.2"/>
    </g>
    <g id="patch_4">
     <path d="M 501.401953 255.8315 
@@ -1505,7 +1505,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p5c605c97f9">
+  <clipPath id="pfd99a689c4">
    <path d="M 501.401953 255.8315 
 C 501.401953 226.710244 495.665701 197.872155 484.521478 170.967622 
 C 473.377256 144.063089 457.041791 119.615338 436.449953 99.0235 

@@ -165,7 +165,7 @@ FRANCE_STRESS_SCENARIOS = {
         "validation_delay_months": 24,
         "settlement_delay_months": 2,
         "oracle_challenge_severity": 0.75,
-        "target_status": "CONDITIONAL",
+        "target_status": "FAIL",
         "source_type": "MODEL_ASSUMPTION",
         "narrative": "Greenwashing allegation, oracle data challenge, expert review, and uncertainty around ZKP/data admissibility.",
     },
@@ -257,6 +257,21 @@ MODEL_PARAMETERS = {
         "source_type": "MODEL_ASSUMPTION",
         "basis": "Monte Carlo noise parameter for time to issuance in months.",
     },
+    "admissibility_noise_sd": {
+        "value": 0.035,
+        "source_type": "MODEL_ASSUMPTION",
+        "basis": "Monte Carlo uncertainty around legal/data admissibility after pathway stress is applied.",
+    },
+    "issuance_noise_sd": {
+        "value": 0.35,
+        "source_type": "MODEL_ASSUMPTION",
+        "basis": "Monte Carlo uncertainty on the issuance-feasibility latent score.",
+    },
+    "admissibility_oracle_penalty_weight": {
+        "value": 0.35,
+        "source_type": "MODEL_ASSUMPTION",
+        "basis": "Additional admissibility penalty applied to scenario oracle challenge severity.",
+    },
     "issuance_sigmoid_scale": {
         "value": 10.0,
         "source_type": "MODEL_ASSUMPTION",
@@ -340,4 +355,3 @@ REPORT_DIR = OUTPUT_DIR / "report"
 
 def sigmoid(values: np.ndarray | float) -> np.ndarray | float:
     return 1.0 / (1.0 + np.exp(-values))
-

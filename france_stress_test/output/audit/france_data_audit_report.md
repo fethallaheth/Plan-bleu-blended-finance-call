@@ -9,5 +9,5 @@
 
 ## Additional Validation Notes
 - France pathway weighted score: 71.65.
-- Scenario status distribution: {'FAIL': 4, 'CONDITIONAL': 1}.
+- Scenario status distribution: {'FAIL': 3, 'PASS': 1, 'CONDITIONAL': 1}.
 - All simulation probabilities are clipped to [0, 1].

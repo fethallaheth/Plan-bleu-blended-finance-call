@@ -1,16 +1,12 @@
-# Blended Finance Monte Carlo Simulation
+# Blended Finance Simulation
 
-This repository contains a Monte Carlo simulation toolkit for blended blue-bond governance analysis, with extensions for:
+Minimal Monte Carlo models for blue-bond structure, France stress testing, and transferability screening.
 
-- France institutional stress testing under adverse scenarios
-- Mediterranean country transferability readiness analysis
+## Modules
 
-## Project Structure
-
-- `blue_bond_simulation/`: Base comparative model (traditional governance vs blockchain-enabled governance)
-- `france_stress_test/`: France institutional stress-test extension
-- `transferability/`: Country transferability extension
-- `run_all_extensions.py`: Runs both extension modules end-to-end
+- `blue_bond_simulation/` base governance and mobilization model
+- `france_stress_test/` France pathway and scenario stress pack
+- `transferability/` cross-country readiness and transfer model
 
 ## Setup
 
@@ -18,25 +14,16 @@ This repository contains a Monte Carlo simulation toolkit for blended blue-bond 
 pip install -r requirements.txt
 ```
 
-## Run the Base Model
+## Run
 
 ```bash
 python blue_bond_simulation/main.py
+python france_stress_test/code/run_france_stress.py
+python transferability/code/run_transferability.py
 ```
 
-## Run Extension Modules
-
-```bash
-python run_all_extensions.py
-```
-
-## Output Folders
-
-Generated files are written to module-specific output directories:
+## Outputs
 
 - `blue_bond_simulation/outputs/`
 - `france_stress_test/output/`
 - `transferability/output/`
-
-These generated outputs are ignored in Git by default for a cleaner source repository.
-
