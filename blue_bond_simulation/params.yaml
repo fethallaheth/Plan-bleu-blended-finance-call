@@ -1,0 +1,72 @@
+simulation:
+  iterations: 10000
+  random_seed: 42
+  project_value_euro: 100000000
+
+scenario_a:
+  name: "Traditional Governance"
+  monitoring_cost_pct:
+    min: 0.02
+    mode: 0.035
+    max: 0.05
+  disbursement_lag_months:
+    min: 3
+    mode: 4.5
+    max: 6
+  mobilization_ratio:
+    min: 3.2
+    mode: 4.0
+    max: 4.8
+  risk_premium_bps:
+    min: 250
+    mode: 300
+    max: 350
+
+scenario_b:
+  name: "Blockchain-Enabled Governance"
+  mrv_reduction:
+    min: 0.10
+    mode: 0.20
+    max: 0.30
+  lag_reduction:
+    min: 0.20
+    mode: 0.30
+    max: 0.40
+  risk_premium_reduction_bps:
+    min: 10
+    mode: 30
+    max: 50
+  bluewashing_risk_reduction:
+    min: 0.15
+    mode: 0.20
+    max: 0.25
+  implementation_cost_pct:
+    min: 0.002
+    mode: 0.005
+    max: 0.010
+  legal_uncertainty_penalty:
+    min: 0.00
+    mode: 0.03
+    max: 0.08
+  oracle_failure_risk:
+    min: 0.00
+    mode: 0.05
+    max: 0.15
+  adoption_friction:
+    min: 0.00
+    mode: 0.05
+    max: 0.12
+
+mobilization_model:
+  literature_baseline: 4.0
+  mrv_weight: 0.25
+  lag_weight: 0.20
+  premium_weight: 0.30
+  bluewashing_weight: 0.25
+  max_mobilization_ratio: 7.0
+
+charting:
+  output_dir: "outputs"
+  figure_dpi: 300
+  figure_format: "png"
+  artemis_note: "Model reference: EUR100M project value"
