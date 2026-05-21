@@ -1,0 +1,1 @@
+"""France stress test package."""

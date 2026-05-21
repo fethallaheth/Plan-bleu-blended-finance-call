@@ -1,0 +1,20 @@
+[project]
+name = "blended-finance-monte-carlo-simulation"
+version = "0.1.0"
+description = "Monte Carlo studies for blended blue-bond governance, stress testing, and transferability."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "PyYAML>=6.0",
+    "openpyxl>=3.1",
+]
+
+[project.scripts]
+run-all = "run_all:main"
+run-blue-bond = "blue_bond_simulation.code.run_blue_bond:main"
+run-france-stress = "france_stress_test.code.run_france_stress:run"
+run-transferability = "transferability.code.run_transferability:run"

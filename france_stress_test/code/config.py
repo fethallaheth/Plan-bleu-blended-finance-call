@@ -349,8 +349,6 @@ OUTPUT_DIR = BASE_DIR / "output"
 DATA_DIR = OUTPUT_DIR / "data"
 FIGURES_DIR = OUTPUT_DIR / "figures"
 TABLES_DIR = OUTPUT_DIR / "tables"
-AUDIT_DIR = OUTPUT_DIR / "audit"
-REPORT_DIR = OUTPUT_DIR / "report"
 
 
 def sigmoid(values: np.ndarray | float) -> np.ndarray | float:

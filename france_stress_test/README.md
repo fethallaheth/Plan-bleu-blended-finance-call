@@ -13,4 +13,3 @@ python code/run_france_stress.py
 - `output/data/`
 - `output/tables/`
 - `output/figures/`
-- `output/report/`

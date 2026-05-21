@@ -13,4 +13,3 @@ python code/run_transferability.py
 - `output/data/`
 - `output/tables/`
 - `output/figures/`
-- `output/report/`
